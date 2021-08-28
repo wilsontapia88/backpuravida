@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWsProductsBrandsTable extends Migration
+class WsPropertiesGallery extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateWsProductsBrandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ws_products_brands', function (Blueprint $table) {
+        Schema::create('ws_properties_gallery', function (Blueprint $table) {
             $table->id();
-            $table->integer('brand_id')->default(null);
-            $table->string('brand_title')->default(null);
-            $table->string('brand_name')->default(null);
-            $table->timestamp('brand_created')->nullable()->default(null);
+            $table->integer('realty_id')->unsigned()->default(null);
+            $table->string('image')->default('null');
+            // $table->foreign('realty_id')->references('realty_id')->on('ws_properties')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateWsProductsBrandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ws_products_brands');
+        Schema::dropIfExists('ws_properties_gallery');
     }
 }

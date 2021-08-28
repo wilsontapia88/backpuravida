@@ -27,7 +27,6 @@ class CreateWsUsersAddressesTable extends Migration
             $table->string('addr_state')->nullable();
             $table->string('addr_country')->nullable();
             $table->timestamps();
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
