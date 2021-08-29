@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ws_ead_course extends Model
 {
     protected $fillable = [
-        'course_id',
         'course_author',
         'course_segment',
         'course_parent',
