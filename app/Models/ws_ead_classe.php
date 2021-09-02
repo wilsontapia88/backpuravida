@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\ws_ead_module;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,4 +22,9 @@ class ws_ead_classe extends Model
         'class_desc',
         'class_support',
     ];
+
+    public function module()
+    {
+        return $this->belongsTo(ws_ead_module::class);
+    }
 }

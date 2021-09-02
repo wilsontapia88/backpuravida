@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Aula;
+use App\Models\ws_ead_classe;
+use App\Models\ws_ead_course;
+use App\Models\ws_ead_module;
+
+
 use Illuminate\Http\Request;
 
 class AulasController extends Controller {
@@ -12,8 +16,11 @@ class AulasController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $aula = Aula::all();
-        return response()->json($aula);
+        $course = ws_ead_course::get();
+        // $teste = $course->modules();
+        // dd($teste);
+        // return view('teste', compact('aula'));
+        return response()->json($course);
     }
 
     public function show(){
