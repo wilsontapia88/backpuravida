@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+use App\Models\ws_ead_course;
+use App\Models\ws_ead_classe;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,4 +21,15 @@ class ws_ead_module extends Model
         'module_release_date',
         'module_required',
     ];
+
+    public function courses()
+    {
+        return $this->belongsTo(ws_ead_course::class);
+    }
+
+
+    public function clases()
+    {
+        return $this->hasMany(ws_ead_classe::class);
+    }
 }

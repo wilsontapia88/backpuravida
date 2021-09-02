@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Models;
+use App\Models\ws_ead_module;
 
 use Illuminate\Database\Eloquent\Model;
 
 class ws_ead_course extends Model
 {
     protected $fillable = [
+        'id',
         'course_author',
         'course_segment',
         'course_parent',
@@ -55,4 +57,10 @@ class ws_ead_course extends Model
         'course_mail_content',
         'course_vinculo',
     ];
+
+
+    public function modules()
+    {
+        return $this->hasMany('App/Models/ws_ead_module', 'course_id', 'id');
+    }
 }
