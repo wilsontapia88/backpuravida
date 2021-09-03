@@ -23,8 +23,17 @@ class AulasController extends Controller {
         return response()->json($course);
     }
 
-    public function show(){
+    public function show($id){
+        $course = ws_ead_course::find($id);
+        return response()->json($course);
+    }
 
+    public function showToAulas() {
+        $course = ws_ead_course::take(4)->get();
+        // $teste = $course->modules();
+        // dd($teste);
+        // return view('teste', compact('aula'));
+        return response()->json($course);
     }
 
     public function store(){
