@@ -16,6 +16,8 @@ class AulasController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(){
+
+    
         $course = ws_ead_course::get();
         // $teste = $course->modules();
         // dd($teste);
