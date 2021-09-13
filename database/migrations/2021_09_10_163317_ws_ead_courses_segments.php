@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWsEadCoursesSegmentsTable extends Migration
+class WsEadCoursesSegments extends Migration
 {
     /**
      * Run the migrations.
@@ -14,13 +14,13 @@ class CreateWsEadCoursesSegmentsTable extends Migration
     public function up()
     {
         Schema::create('ws_ead_courses_segments', function (Blueprint $table) {
-            $table->id();
-            $table->string('segment_title')->nullable();
-            $table->string('segment_name')->nullable();
-            $table->text('segment_desc')->nullable();
-            $table->string('segment_order')->nullable();
-            $table->string('segment_icon')->nullable();
-            $table->timestamps();
+            $table->increments('segment_id')->nullabble();
+            $table->string('segment_title')->nullabble();
+            $table->string('segment_name')->nullabble();
+            $table->text('segment_desc')->nullabble();
+            $table->integer('segment_order')->nullabble();
+            $table->string('segment_icon')->nullabble();
+            $table->timestamp('segment_created')->nullabble();
         });
     }
 

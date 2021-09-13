@@ -7,8 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ws_ead_course extends Model
 {
+
+    protected $table = 'ws_ead_courses';
+
+    const CREATED_AT = 'course_created';
+    const UPDATED_AT = 'course_updated';
+
     protected $fillable = [
-        'id',
         'course_author',
         'course_segment',
         'course_parent',

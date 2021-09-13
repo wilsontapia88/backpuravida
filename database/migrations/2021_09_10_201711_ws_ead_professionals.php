@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWsEadProfessionalsTable extends Migration
+class WsEadProfessionals extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateWsEadProfessionalsTable extends Migration
     public function up()
     {
         Schema::create('ws_ead_professionals', function (Blueprint $table) {
-            $table->id();
+            $table->increments('pro_id');
             $table->string('pro_photo')->nullable();
             $table->string('pro_thumb')->nullable();
             $table->string('pro_name')->nullable();
@@ -30,7 +30,6 @@ class CreateWsEadProfessionalsTable extends Migration
             $table->integer('pro_status')->default(0);
             $table->text('pro_form')->nullable();
             $table->timestamp('pro_created')->nullable();
-            $table->timestamps();
         });
     }
 

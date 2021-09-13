@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWsUsersNotesTable extends Migration
+class WsUsersNotes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,14 +14,15 @@ class CreateWsUsersNotesTable extends Migration
     public function up()
     {
         Schema::create('ws_users_notes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->integer('admin_id')->nullable();
+            $table->increments('note_id')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('admin_id');
             $table->string('note_text')->nullable();
-            $table->dateTime('note_datetime')->nullable();
-            $table->string('note_status')->nullable();
-            $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamp('note_datetime')->nullable();
+            $table->integer('note_status')->nullable();
+
+            $table->foreign('user_id')->references('user_id')->on('ws_users')->onDelete('cascade');
+            $table->foreign('admin_id')->references('user_id')->on('ws_users')->onDelete('cascade');
 
         });
     }

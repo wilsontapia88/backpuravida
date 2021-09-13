@@ -6,6 +6,7 @@ use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -15,13 +16,16 @@ class AuthController extends Controller
 
         $request->validate([
             'name'     => 'required|string',
-            'email'    => 'required|string|email|unique:users',
+            'user_email'    => 'required|string|email|unique:ws_users',
             'password' => 'required|string|confirmed',
         ]);
+
+        // dd($request->all());
+
         $user = new User([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password),
+            'user_name'     => $request->name,
+            'user_email'    => $request->user_email,
+            'user_password' => bcrypt($request->password),
         ]);
         $user->save();
         return response()->json([
@@ -30,16 +34,24 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $request->validate([
-            'email'       => 'required|string|email',
+            'user_email'       => 'required|string|email',
             'password'    => 'required|string',
             'remember_me' => 'boolean',
         ]);
-        $credentials = request(['email', 'password']);
-        if (!Auth::attempt($credentials)) {
+
+        $credentials = [
+            'user_password' => $request->password,
+            'user_email' => $request->user_email,
+        ];
+
+        $verficador = $this->verificador($credentials);
+
+        if (!$verficador['status']) {
             return response()->json([
                 'message' => 'Unauthorized'], 401);
         }
-        $user = $request->user();
+
+        $user = $verficador['dadosUser'];
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
         if ($request->remember_me) {
@@ -53,6 +65,24 @@ class AuthController extends Controller
                 $tokenResult->token->expires_at)
                     ->toDateTimeString(),
         ]);
+    }
+
+    function verificador($credentials){
+
+        $dadosUser = User::where('user_email', $credentials['user_email'])->first();
+        if($dadosUser){
+            if(Hash::check($credentials['user_password'],$dadosUser->user_password)) {
+                return [
+                    'dadosUser' => $dadosUser,
+                    'status' => true
+                ];
+            } else {
+                return ['status' => false];
+            }
+        }else{
+            return ['status' => false];
+        }
+
     }
 
     public function logout(Request $request)

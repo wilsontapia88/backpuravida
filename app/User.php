@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    protected $table = 'ws_users';
+
     use HasApiTokens, Notifiable;
 
     /**
@@ -16,11 +18,16 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    const CREATED_AT = 'user_registration';
+    const UPDATED_AT = 'user_lastupdate';
+
+    const id = 'user_id';
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'user_id',
         'user_thumb',
+        'user_name',       //nome douser
         'user_lastname',
         'user_document',
         'user_document_check',
@@ -28,8 +35,14 @@ class User extends Authenticatable
         'user_datebirth',
         'user_telephone',
         'user_cell',
+        'user_email',      //email do user
+        'user_password',   //password do user
         'user_channel',
+        'user_registration',
+        'user_lastupdate',
         'user_lastaccess',
+        'user_login',
+        'user_login_cookie',
         'user_level',
         'user_facebook',
         'user_twitter',
@@ -58,4 +71,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
 }

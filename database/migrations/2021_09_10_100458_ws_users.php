@@ -4,37 +4,43 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class WsUsers extends Migration
 {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+        Schema::create('ws_users', function (Blueprint $table) {
+            $table->increments('user_id');
             $table->string('user_thumb')->nullable();
+            $table->string('user_name')->nullable();
             $table->string('user_lastname')->nullable();
-            $table->integer('user_document')->nullable();
-            $table->string('user_document_check')->nullable();
+            $table->string('user_document')->nullable();
+            $table->integer('user_document_check')->nullable();
             $table->integer('user_genre')->nullable();
             $table->date('user_datebirth')->nullable();
             $table->string('user_telephone')->nullable();
             $table->string('user_cell')->nullable();
+            $table->string('user_email')->default('');
+            $table->string('user_password')->default('');
             $table->string('user_channel')->nullable();
-            $table->dateTime('user_lastaccess')->nullable();
-            $table->integer('user_level')->nullable();
+            $table->timestamp('user_registration')->nullable();
+            $table->timestamp('user_lastupdate')->nullable();
+            $table->timestamp('user_lastaccess')->nullable();
+            $table->string('user_login')->nullable();
+            $table->string('user_login_cookie')->nullable();
+            $table->integer('user_level')->default(1);
             $table->string('user_facebook')->nullable();
             $table->string('user_twitter')->nullable();
             $table->string('user_youtube')->nullable();
             $table->string('user_google')->nullable();
             $table->string('user_document_name')->nullable();
             $table->string('user_blocking_reason')->nullable();
-            $table->integer('user_agreement')->nullable();
-            $table->integer('user_videointro')->nullable();
-            $table->rememberToken();
-            $table->timestamps();
+            $table->integer('user_agreement')->default(0);
+            $table->integer('user_videointro')->default(0);
         });
     }
 
@@ -45,6 +51,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ws_users');
     }
 }
