@@ -22,4 +22,9 @@ class CourseController extends Controller
         return response()->json($course);
     }
 
+    public function indexForTest(){
+        $course = WsEadCourse::get();
+        return response()->json($course);
+    }
+
 }
