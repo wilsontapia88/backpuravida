@@ -19,14 +19,26 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::group(['prefix' => 'auth'], function () {
+
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
 
-    Route::get('courses', 'AulasController@index');
-    // Route::get('courses/{id}', 'AulasController@show');
+    Route::get('classes', 'ClassController@index');
+    Route::get('class/{id}', 'ClassController@show');
+
+    Route::get('courses', 'CourseController@index');
+    Route::get('course/{id}', 'CourseController@show');
 
     Route::get('modules', 'ModulesController@index');
     Route::get('modules/{id}', 'ModulesController@show');
+
+    Route::get('posts', 'PostController@index');
+    Route::get('post/{id}', 'PostController@show');
+
+    Route::get('professionals', 'ProfessionalController@index');
+    Route::get('professional/{id}', 'ProfessionalController@show');
+
+
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
