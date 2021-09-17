@@ -26,8 +26,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('classes', 'ClassController@index');
     Route::get('class/{id}', 'ClassController@show');
 
-    // Route::get('courses', 'CourseController@index');
-    Route::get('coursesfortest', 'CourseController@indexForTest');
+    Route::get('courses', 'CourseController@index');
+    // Route::get('coursesfortest', 'CourseController@indexForTest');
     Route::get('course/{id}', 'CourseController@show');
 
     Route::get('modules', 'ModulesController@index');
@@ -38,6 +38,9 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('professionals', 'ProfessionalController@index');
     Route::get('professional/{id}', 'ProfessionalController@show');
+
+    Route::get('perfil', 'PerfilController@getUser');
+
 
 
 

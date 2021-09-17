@@ -20,6 +20,8 @@ class ModulesController extends Controller {
 
     public function show($id){
         $module = WsEadModule::find($id);
+
+
         return response()->json($module);
     }
 
