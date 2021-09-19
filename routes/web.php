@@ -17,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('aulas', 'AulasController@index');
+Route::get('imagens', 'ClassController@imagens');

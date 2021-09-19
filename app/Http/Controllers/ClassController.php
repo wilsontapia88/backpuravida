@@ -16,4 +16,17 @@ class ClassController extends Controller
         return response()->json($course);
     }
 
+    public function imagens(){
+
+        $course = WsEadClass::get();
+
+        $aula = $course[0];
+
+
+
+        return view('teste', compact('aula'));
+
+        //este es un teste
+    }
+
 }

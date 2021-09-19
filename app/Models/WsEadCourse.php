@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class WsEadCourse
- * 
+ *
  * @property int $course_id
  * @property int|null $course_author
  * @property int|null $course_segment
@@ -141,4 +141,9 @@ class WsEadCourse extends Model
 		'course_mail_content',
 		'course_vinculo'
 	];
+
+    public function module()
+    {
+        $this->hasMany('App/Models/WsEadModule', 'course_id', 'course_id');
+    }
 }

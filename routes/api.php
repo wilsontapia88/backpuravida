@@ -33,6 +33,9 @@ Route::get('modules/{id}', 'ModulesController@show');
 
 Route::get('posts', 'PostController@index');
 Route::get('post/{id}', 'PostController@show');
+    Route::get('courses', 'CourseController@index');
+    // Route::get('coursesfortest', 'CourseController@indexForTest');
+    Route::get('course/{id}', 'CourseController@show');
 
 Route::get('professionals', 'ProfessionalController@index');
 Route::get('professional/{id}', 'ProfessionalController@show');
@@ -40,6 +43,9 @@ Route::get('professional/{id}', 'ProfessionalController@show');
 Route::get('materiais', 'MateriaisController@index');
 
 Route::group(['prefix' => 'auth'], function () {
+
+
+    Route::get('perfil', 'PerfilController@getUser');
 
 
 

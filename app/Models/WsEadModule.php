@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class WsEadModule
- * 
+ *
  * @property int|null $course_id
  * @property int $module_id
  * @property string|null $module_title
@@ -64,4 +64,9 @@ class WsEadModule extends Model
 		'module_required',
 		'module_created'
 	];
+
+    public function course()
+    {
+        $$this->belongsTo('App/Models/WsEadCourse', 'course_id', 'course_id');
+    }
 }
