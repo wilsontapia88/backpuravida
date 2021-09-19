@@ -41,8 +41,7 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('perfil', 'PerfilController@getUser');
 
-
-
+    Route::get('beneficios', 'BeneficiosController@index');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');
