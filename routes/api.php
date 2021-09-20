@@ -25,7 +25,6 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::get('classes', 'ClassController@index');
     Route::get('class/{id}', 'ClassController@show');
-
     Route::get('courses', 'CourseController@index');
     // Route::get('coursesfortest', 'CourseController@indexForTest');
     Route::get('course/{id}', 'CourseController@show');

@@ -10,6 +10,7 @@ use App\Models\AwsVideo;
 
 class CourseController extends Controller
 {
+
     public function index(){
         $courses = WsEadCourse::get();
         foreach ($courses as $course) {
@@ -19,9 +20,14 @@ class CourseController extends Controller
                 foreach($clasess as $clases){
                     $linkurl = AwsVideo::where('codigo', $clases->class_video)->first();
                     if(isset($linkurl)){
-                        $clacses['class_video_url'] = $linkurl->url;
+                        if (str_contains($linkurl->url, 'd2cqg1nz1xl5v3')) {
+                            $linkvideo = $linkurl->url;
+                        } else {
+                            $linkvideo = 'https://d2cqg1nz1xl5v3.cloudfront.net/'.$linkurl->url;
+                        }
+                        $clases['class_video_url'] = $linkvideo;
                     }else{
-                        $clacses['class_video_url'] = null;
+                        $clases['class_video_url'] = null;
                     }
                 }
                 $module['aulas'] = $clasess;
@@ -30,6 +36,7 @@ class CourseController extends Controller
         }
         return response()->json($courses);
     }
+
 
     public function show($id){
         $course = WsEadCourse::where('course_id', $id)->first();
