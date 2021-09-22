@@ -31,6 +31,9 @@ Route::get('course/{id}', 'CourseController@show');
 Route::get('modules', 'ModulesController@index');
 Route::get('modules/{id}', 'ModulesController@show');
 
+Route::get('videos', 'AwsVideosController@index');
+Route::get('videos/{id}', 'AwsVideosController@show');
+
 Route::get('posts', 'PostController@index');
 Route::get('post/{id}', 'PostController@show');
     Route::get('courses', 'CourseController@index');
@@ -41,6 +44,8 @@ Route::get('professionals', 'ProfessionalController@index');
 Route::get('professional/{id}', 'ProfessionalController@show');
 
 Route::get('materiais', 'MateriaisController@index');
+
+Route::get('perfil', 'PerfilController@index');
 
 Route::group(['prefix' => 'auth'], function () {
 
