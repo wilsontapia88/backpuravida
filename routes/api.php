@@ -23,8 +23,15 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', 'AuthController@login');
     Route::post('signup', 'AuthController@signup');
 
+    Route::get('videos', 'AwsVideosController@index');
+    Route::get('videos/{id}', 'AwsVideosController@show');
+
+    Route::get('posts', 'PostController@index');
+    Route::get('post/{id}', 'PostController@show');
+
     Route::get('classes', 'ClassController@index');
     Route::get('class/{id}', 'ClassController@show');
+
     Route::get('courses', 'CourseController@index');
     Route::get('coursesfortest', 'CourseController@indexForTest');
     Route::get('course/{id}', 'CourseController@show');
@@ -32,21 +39,16 @@ Route::group(['prefix' => 'auth'], function () {
     Route::get('modules', 'ModulesController@index');
     Route::get('modules/{id}', 'ModulesController@show');
 
-    Route::get('posts', 'PostController@index');
-    Route::get('post/{id}', 'PostController@show');
-
-    Route::get('professionals', 'ProfessionalController@index');
-    Route::get('professional/{id}', 'ProfessionalController@show');
+    Route::get('materiais', 'MateriaisController@index');
 
     Route::get('perfil', 'PerfilController@getUser');
 
     Route::get('anamnese', 'AnamneseController@index');
 
-
     Route::get('beneficios', 'BeneficiosController@index');
 
-
-
+    Route::get('professionals', 'ProfessionalController@index');
+    Route::get('professional/{id}', 'ProfessionalController@show');
 
     Route::group(['middleware' => 'auth:api'], function() {
         Route::get('logout', 'AuthController@logout');

@@ -7,13 +7,13 @@ use Illuminate\Http\Request;
 class ClassController extends Controller
 {
     public function index(){
-        $course = WsEadClass::get();
-        return response()->json($course);
+        $aulas = WsEadClass::get();
+        return response()->json($aulas);
     }
 
     public function show($id){
-        $course = WsEadClass::where('class_id', $id)->first();
-        return response()->json($course);
+        $aula = WsEadClass::where('class_id', $id)->first();
+        return response()->json($aula);
     }
 
     public function imagens(){

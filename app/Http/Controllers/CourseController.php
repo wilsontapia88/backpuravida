@@ -10,6 +10,7 @@ use App\Models\WsEadCoursesSegment;
 
 use App\Models\AwsVideo;
 
+
 class CourseController extends Controller
 {
 
@@ -69,6 +70,7 @@ class CourseController extends Controller
         $course['modules'] = $modules;
         return response()->json($course);
     }
+
 
     public function showToAulas() {
         $course = WsEadCourse::take(4)->get();
